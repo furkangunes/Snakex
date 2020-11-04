@@ -35,8 +35,8 @@ class Constants:
 
 	GAME_WINDOW = "game_window"
 
-	GAME_WINDOW_WIDTH = 150 * OBJECT_SIZE #80 * OBJECT_SIZE
-	GAME_WINDOW_HEIGHT = 150 * OBJECT_SIZE #60 * OBJECT_SIZE
+	GAME_WINDOW_WIDTH = 160 * OBJECT_SIZE
+	GAME_WINDOW_HEIGHT = 120 * OBJECT_SIZE
 	GAME_WINDOW_COLOR = Colors.BLACK
 	GAME_WINDOW_CAPTION = "Snakes"
 
@@ -54,7 +54,6 @@ class JSONKeys:
 	ADDRESS = "address"
 
 	GAME_STARTED = "game_started"
-	GAME_OVER = "game_over"
 
 	FPS = "fps"
 
@@ -68,11 +67,3 @@ class JSONKeys:
 	BOARD = "board"
 
 	QUIT = "quit"
-
-	PLAYER_QUIT = "player_quit"
-	PLAYER_DIED = "player_died"
-
-	ATE_FOOD = "ate_food"
-	FOOD = "food"
-
-	MOVE = "move"
