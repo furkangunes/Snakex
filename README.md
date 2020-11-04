@@ -12,7 +12,7 @@ Possible bug fixes and updates are to be done
 
 ### Server
 
-Run the script to start the server.
+Run the script to start the server. Wait for up to 4 players.
 
 ```bash
 python3 server.py
