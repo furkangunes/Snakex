@@ -2,6 +2,8 @@
 
 A competitive version of the classical snake game.
 
+**Requires pygame**
+
 Possible bug fixes and updates are to be done
 
 **Uses LAN**
