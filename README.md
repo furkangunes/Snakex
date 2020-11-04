@@ -12,13 +12,16 @@ Possible bug fixes and updates are to be done
 
 ### Server
 
-Run the script to start the server. Wait for up to 4 players.
+Run the script to start the server.
 
 ```bash
 python3 server.py
 ```
 
+Wait for up to 4 players.
+
 Type **start** to start the game.
+
 Type **quit** to shutdown the server.
 
 Game settings might be changed from **util.py**
