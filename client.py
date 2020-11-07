@@ -122,12 +122,7 @@ class Client:
 		except Exception as e:
 			return
 
-	def run(self):
-		self.initBoard()
-		thread = Thread(target = self.sendInput)
-		thread.setDaemon(True)
-		thread.start()
-
+	def processMessage(self):
 		while True:
 			msg = None
 			try:
@@ -146,6 +141,14 @@ class Client:
 			except Exception as e:
 				print(e)
 				break
+
+	def run(self):
+		self.initBoard()
+		thread = Thread(target = self.processMessage)
+		thread.setDaemon(True)
+		thread.start()
+
+		self.sendInput()
 
 		self.exitGame(thread)
 
