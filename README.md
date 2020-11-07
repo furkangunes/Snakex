@@ -2,6 +2,8 @@
 
 A competitive version of the classical snake game.
 
+**Requires pygame**
+
 Possible bug fixes and updates are to be done
 
 **Uses LAN**
@@ -16,7 +18,10 @@ Run the script to start the server.
 python3 server.py
 ```
 
+Wait for up to 4 players.
+
 Type **start** to start the game.
+
 Type **quit** to shutdown the server.
 
 Game settings might be changed from **util.py**
