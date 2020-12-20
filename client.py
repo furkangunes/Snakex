@@ -144,8 +144,6 @@ class Client:
 			return
 
 	def processMessage(self, call_exit = False):
-		broken_count = 20
-		count = broken_count
 		while True:
 			msg = None
 			try:
@@ -157,21 +155,13 @@ class Client:
 				else:
 					self.updateBoard(msg)
 
-				count = broken_count
-
 			except BrokenPipeError:
 				print("Broken pipe in run")
 				break
 
 			except Exception as e:
-				print("Exception in processing message")
-				count -= 1
-				if not count:
-					call_exit = True
-					print("Will try to exit due to possible broken pipe")
-					break
-				else:		
-					continue
+				print("Exception in processing message")	
+				continue
 
 		if call_exit:
 			self.exitGame()
