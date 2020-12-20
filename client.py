@@ -145,7 +145,7 @@ class Client:
 			#print("Exception in send input:", e)
 			return
 
-	def processMessage(self):
+	def processMessage(self, call_exit):
 		while True:
 			msg = None
 			try:
@@ -165,6 +165,9 @@ class Client:
 				print(e)
 				break
 
+		if call_exit:
+                        self.exitGame()
+
 	def run(self):
 		self.initBoard()
 
@@ -178,7 +181,7 @@ class Client:
 			self.processMessage()
 
 		else:
-			thread = Thread(target = self.processMessage)
+			thread = Thread(target = self.processMessage, args = (True, ))
 			thread.setDaemon(True)
 			thread.start()
 
