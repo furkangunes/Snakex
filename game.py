@@ -57,7 +57,7 @@ class Game:
 			if player.alive:
 				head, tail = player.snake.move(self.board, self.food)
 				if head == None:
-					print("player", player.id, "died")
+					print("Player", player.id, "died", " Score:", len(player.snake.pos) - util.Constants.SNAKE_LEN)
 					player.alive = False
 					continue
 

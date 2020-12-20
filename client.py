@@ -69,7 +69,7 @@ class Client:
 		
 	def drawObject(self, obj):
 		obj_size = util.Constants.OBJECT_SIZE
-		pygame.draw.rect(self.board, obj.color, pygame.Rect(obj.y, obj.x, obj_size, obj_size))
+		pygame.draw.rect(self.board, obj.color, pygame.Rect(obj.y - obj_size / 2, obj.x - obj_size / 2, obj_size, obj_size))
 
 	def initBoard(self):
 		pygame.init()
@@ -144,6 +144,8 @@ class Client:
 			return
 
 	def processMessage(self, call_exit = False):
+		broken_count = 20
+		count = broken_count
 		while True:
 			msg = None
 			try:
@@ -155,14 +157,21 @@ class Client:
 				else:
 					self.updateBoard(msg)
 
+				count = broken_count
+
 			except BrokenPipeError:
 				print("Broken pipe in run")
 				break
 
 			except Exception as e:
-				print(e)
-				print("Exception in processmsg")
-				continue
+				print("Exception in processing message")
+				count -= 1
+				if not count:
+					call_exit = True
+					print("Will try to exit due to possible broken pipe")
+					break
+				else:		
+					continue
 
 		if call_exit:
 			self.exitGame()

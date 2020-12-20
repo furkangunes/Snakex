@@ -37,25 +37,25 @@ class Snake:
 		if id == 1:
 			self.color = util.Colors.GREEN
 			self.dir = right
-			for i in range((snake_len + 2) * obj_size, obj_size, -obj_size):
+			for i in range((snake_len + 1) * obj_size, obj_size, -obj_size):
 				self.pos.append(Obj(obj_size, i, self.color))
 		
 		elif id == 2:
 			self.color = util.Colors.RED
 			self.dir = left
-			for i in range(width - (snake_len - obj_size) * obj_size, width - obj_size, obj_size):
+			for i in range(width - obj_size - snake_len * obj_size, width - obj_size, obj_size):
 				self.pos.append(Obj(height - obj_size, i, self.color))
 
 		elif id == 3:
 			self.color = util.Colors.BLUE
 			self.dir = up
-			for i in range(height - (snake_len + 2) * obj_size, height - obj_size, obj_size):
+			for i in range(height - obj_size - snake_len * obj_size, height - obj_size, obj_size):
 				self.pos.append(Obj(i, obj_size, self.color))
 
 		elif id == 4:
 			self.color = util.Colors.YELLOW
 			self.dir = down
-			for i in range((snake_len + obj_size) * obj_size, obj_size, -obj_size):
+			for i in range((snake_len + 1) * obj_size, obj_size, -obj_size):
 				self.pos.append(Obj(i, width - obj_size, self.color))
 
 		else:
