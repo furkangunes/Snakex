@@ -20,7 +20,7 @@ import pickle
 import pygame
 import atexit
 from time import sleep
-from sys import argv
+import sys
 
 import util
 import obj
@@ -32,6 +32,8 @@ class Client:
 
 		self.server_ip = None
 		self.server_port = None
+
+		argv = sys.argv
 
 		if len(argv) > 1:
 			self.server_ip = argv[1]
@@ -165,11 +167,22 @@ class Client:
 
 	def run(self):
 		self.initBoard()
-		thread = Thread(target = self.sendInput)
-		thread.setDaemon(True)
-		thread.start()
 
-		self.processMessage()
+		thread = None
+
+		if sys.platform == "linux" or sys.platform == "linux2":
+			thread = Thread(target = self.sendInput)
+			thread.setDaemon(True)
+			thread.start()
+
+			self.processMessage()
+
+		else:
+			thread = Thread(target = self.processMessage)
+			thread.setDaemon(True)
+			thread.start()
+
+			self.sendInput()
 
 		self.exitGame(thread)
 
