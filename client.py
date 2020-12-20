@@ -160,7 +160,7 @@ class Client:
 				break
 
 			except Exception as e:
-				print("Exception in processing message")	
+				#print("Exception in processing message")	
 				continue
 
 		if call_exit:
