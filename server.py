@@ -30,8 +30,11 @@ ip = util.Constants.IP
 port = util.Constants.PORT
 socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-socket.bind((ip, port))
-socket.listen(4)
+print("ip: ", ip)
+print("port: ", port)
+
+socket.bind(("", port))
+socket.listen()
 
 id = 1
 players = []

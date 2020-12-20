@@ -20,6 +20,7 @@ import pickle
 import pygame
 import atexit
 from time import sleep
+from sys import argv
 
 import util
 import obj
@@ -28,8 +29,24 @@ class Client:
 	def __init__(self):
 		self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		self.board = None
+
+		self.server_ip = None
+		self.server_port = None
+
+		if len(argv) > 1:
+			self.server_ip = argv[1]
+		else:
+			print("Server ip: ", end = "")
+			self.server_ip = input()
+
+		if len(argv) > 2:
+			self.server_port = argv[2]
+		else:
+			print("Server port: ", end = "")
+			self.server_port = int(input())
+
 		try:
-			self.socket.connect((util.Constants.IP, util.Constants.PORT))
+			self.socket.connect((self.server_ip, self.server_port))
 			atexit.register(self.disconnect)
 		except:
 			print("Cannot connect to the server")
@@ -81,7 +98,10 @@ class Client:
 		for obj in objects:
 			self.drawObject(obj)
 
-		pygame.display.update()
+		try:
+			pygame.display.update()
+		except:
+			print("HELLO")
 
 	def exitGame(self, thread = None):
 		print("Quitting Game...")
@@ -120,6 +140,7 @@ class Client:
 						if direction != None:
 							self.sendMessage({util.JSONKeys.DIRECTION: direction})
 		except Exception as e:
+			#print("Exception in send input:", e)
 			return
 
 	def processMessage(self):
@@ -144,11 +165,11 @@ class Client:
 
 	def run(self):
 		self.initBoard()
-		thread = Thread(target = self.processMessage)
+		thread = Thread(target = self.sendInput)
 		thread.setDaemon(True)
 		thread.start()
 
-		self.sendInput()
+		self.processMessage()
 
 		self.exitGame(thread)
 
