@@ -33,16 +33,14 @@ class Client:
 		self.server_ip = None
 		self.server_port = None
 
-		argv = sys.argv
-
-		if len(argv) > 1:
-			self.server_ip = argv[1]
+		if len(sys.argv) > 1:
+			self.server_ip = sys.argv[1]
 		else:
 			print("Server ip: ", end = "")
 			self.server_ip = input()
 
-		if len(argv) > 2:
-			self.server_port = argv[2]
+		if len(sys.argv) > 2:
+			self.server_port = int(sys.argv[2])
 		else:
 			print("Server port: ", end = "")
 			self.server_port = int(input())
@@ -163,7 +161,8 @@ class Client:
 
 			except Exception as e:
 				print(e)
-				break
+				print("Exception in processmsg")
+				continue
 
 		if call_exit:
 			self.exitGame()
