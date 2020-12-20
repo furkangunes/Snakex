@@ -166,7 +166,7 @@ class Client:
 				break
 
 		if call_exit:
-            self.exitGame()
+			self.exitGame()
 
 	def run(self):
 		self.initBoard()
