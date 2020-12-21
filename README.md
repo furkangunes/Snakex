@@ -31,8 +31,10 @@ Game settings might be changed from **util.py**
 Run the script to connect to the server and wait for the game to start.
 
 ```bash
-python3 client.py
+python3 client.py <server_ip>(optional) <client_ip>(optional)
 ```
+
+Server ip and port are asked if not provided as arguments.
 
 Use arrow keys to move.
 
